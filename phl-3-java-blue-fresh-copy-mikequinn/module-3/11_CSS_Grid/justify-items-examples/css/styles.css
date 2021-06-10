@@ -1,0 +1,39 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "area1 area2"
+        "area3 area3";
+    grid-gap: 15px;
+    border: 2px solid red;
+}
+
+.container span {
+    padding: 0 5px;
+}
+
+#container-start {
+    justify-items: start;
+}
+
+#container-center {
+    justify-items: center;
+}
+
+#container-end {
+    justify-items: end;
+}
+
+#container-area-3-start {
+    justify-items: center;
+}
+
+.box{
+    background-color: purple;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.justify-self-left {
+    justify-self: start;
+}

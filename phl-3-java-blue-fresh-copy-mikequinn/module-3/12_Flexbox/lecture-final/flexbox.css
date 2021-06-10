@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#featured section {
+    display: flex;
+}
+
+#featured section article div {
+    text-align: center;
+}
+
+#all-items > section > article {
+    display: flex;
+    align-items: center;
+}
+
+#all-items > section > article p {
+    flex-basis: 80%;
+}
+
+/* All items default to order: 1 so if we assign
+    an order of 2 to the icon, it will jump forward
+    ahead of the text
+#all-items > section > article:last-child > div:first-child {
+    order: 2;
+}*/
+
+
+/* in this instance we can just reverse the row flow 
+    and it will accomplish the same thing since there
+    are only 2 items */
+/* #all-items > section > article:last-child {
+    flex-direction: row-reverse; 
+ } */
+
+
+
+/* we can target nth-child with a number to target a specific child
+ rather than first or last
+ #all-items > section > article:nth-child(2) {
+    flex-direction: row-reverse; 
+ } */
+
+ /* we can follow the example above but swap 2 for even. This will apply
+ this rule for all child elements so that if you more data later it will
+ behaviors for rows based on whether they are odd or even inf the child count */
+ #all-items > section > article:nth-child(even) {
+    flex-direction: row-reverse; 
+ }
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+    #featured section {
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+    };
+}
