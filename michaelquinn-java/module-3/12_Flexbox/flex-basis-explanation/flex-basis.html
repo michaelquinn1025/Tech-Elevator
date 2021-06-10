@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex-Basis Explained</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
+</head>
+<body class="container">
+    
+    <header>
+        <div class="amatic2" >Flex-Basis Explained</div>
+    </header>
+
+    <main class="content">
+        <section class="content-container" id="grid-unit-examples">
+
+            <section>
+                <article>
+
+                    <p>To understand the <span class="codefont">flex-basis</span> property, we need to understand how <span class="codefont">flex-grow</span> and <span class="codefont">flex-shrink</span> work.</p>
+                    
+                    <p>For these examples we will be working with these classes:</p>
+                    <div class="codesample list-style-code-sample">
+                        <pre class="block">            
+    .flex-example-1 {
+        border: 3px black solid;
+        display: flex;
+    }
+
+    .box-flex {
+        background-color: blueviolet;
+        color: white;
+        text-align: center;
+        width: 100px;
+        padding: 15px 5px;
+        margin: 1px;
+    }
+                        </pre>
+                    </div>
+
+                    <p>The examples we are going to look at, we will be working with a div similar to this:</p>
+                    
+                    <div class="codesample list-style-code-sample">
+                        <pre class="block">            
+    &lt;div class="flex-example-1"&gt;
+        &lt;span class="box-flex"&gt;A&lt;/span&gt;
+        &lt;span class="box-flex"&gt;B&lt;/span&gt;
+        &lt;span class="box-flex"&gt;C&lt;/span&gt;
+    &lt;/div&gt;
+                        </pre>
+                    </div>
+
+                    <p>This HTML gives us the results below - it renders each box at it's true size (100px).</p>
+
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex" >B</span>
+                        <span class="box-flex">C</span>
+                    </div>
+
+                    <p>If we add <span class="codefont">flex-grow: 1</span> to the span containing B, it will stretch to fill all the extra space.</p>
+
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex  flex-grow" >B</span>
+                        <span class="box-flex">C</span>
+                    </div>
+
+                    <p>If we also add <span class="codefont">flex-grow: 2</span> to the span containing C, it will stretch to twice the amount B stretches:</p>
+
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex flex-grow" >B</span>
+                        <span class="box-flex flex-grow-2">C</span>
+                    </div>
+
+                    <p>If we remove the <span class="codefont">flex-grow: 1</span> from the span containing B and leave the <span class="codefont">flex-grow: 2</span> in the span containing span C, span B will no longer be allowed to grow and will shrink down to it's original size:</p>
+
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex" >B</span>
+                        <span class="box-flex flex-grow-2">C</span>
+                    </div>
+
+                    <p>We can use the <span class="codefont">flex</span> property as shorthand for <span class="codefont">flex-grow</span>, <span class="codefont">flex-shrink</span>, and <span class="codefont">flex-basis</span> properties. This will help us understand <span class="codefont">flex-basis</span>.</p>
+                    
+                    <p>In the property <span class="codefont">flex: 1 0 200px</span>,  1 indicates the flex-grow value, 0 indicates the flex-shrink value, and 200px indicates the flex-basis value.</p>
+                    
+                    <p>If we leave the span containing C as above (<span class="codefont">flex-grow: 2</span>) but add <span class="codefont">flex: 1 0 200px</span> to the span containing B, we are saying that B is allowed to grow but the flex-basis specifies that B must take up AT LEAST 200px. As you can see, C is no longer 2 the times the amount B stretches because if B is at least 200px, there isn't room for C to grow more than it is. In the case that  <span class="codefont">flex-basis</span> is specified for an element with  <span class="codefont">flex-grow</span>, the  <span class="codefont">flex-basis</span> value indicates that the element must be at least the size specified by <span class="codefont">flex-basis</span> but can grow larger if need be. The math of how the proportions are calculated under this circumstance are complex but the main point here is that B has a minimum size.</p>
+                   
+                    
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex  flex-grow-basis-200px" >B</span>
+                        <span class="box-flex flex-grow-2">C</span>
+                    </div>
+
+                    <p>If we leave B as above (<span class="codefont">flex: 1 0 200px</span>) and modify C to have no longer have a <span class="codefont">flex-grow</span> value, but rather to have <span class="codefont">flex-shrink: 1</span> (<span class="codefont">flex: 0 1</span>) we will see that it no longer grows and, thus, shrinks back down to it's original size while B stretches to fill the rest of the space.</p>
+                    
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex  flex-grow-basis-200px" >B</span>
+                        <span class="box-flex flex-shrink">C</span>
+                    </div>
+                    
+                    <p>However, if we do the same and specify a <span class="codefont">flex-basis</span> of 50px for C (<span class="codefont">flex: 0 1 50px</span>) we will see that C shrinks and will no longer be allowed to grow to be more than 50px. In the case that  <span class="codefont">flex-basis</span> is specified for an element with  <span class="codefont">flex-shrink</span>, the  <span class="codefont">flex-basis</span> value indicates that the element will shrink and cannot be larger than the <span class="codefont">flex-basis</span>  value. </p>
+
+                    <div class="flex-example-1">
+                        <span class="box-flex">A</span>
+                        <span class="box-flex  flex-grow-basis-200px" >B</span>
+                        <span class="box-flex flex-shrink-basis-50px">C</span>
+                    </div>
+
+                </article>
+            </section>
+        </section>
+
+
+
+    </main>
+</body>
+</html>
